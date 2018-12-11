@@ -1,0 +1,11 @@
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.exe.config
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.exe
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.pdb
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\WindowsFormsApplication1\bin\Release\LightTestLib.dll
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\WindowsFormsApplication1\bin\Release\LightTestLib.pdb
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Form1.resources
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.exe
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.pdb

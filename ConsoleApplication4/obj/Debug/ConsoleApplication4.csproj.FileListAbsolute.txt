@@ -1,0 +1,8 @@
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\obj\Debug\ConsoleApplication4.csprojResolveAssemblyReference.cache
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\bin\Debug\ConsoleApplication4.exe.config
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\bin\Debug\ConsoleApplication4.exe
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\bin\Debug\ConsoleApplication4.pdb
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\bin\Debug\LightTestLib.dll
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\bin\Debug\LightTestLib.pdb
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\obj\Debug\ConsoleApplication4.exe
+C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\obj\Debug\ConsoleApplication4.pdb
