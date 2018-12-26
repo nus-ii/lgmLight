@@ -37,6 +37,7 @@ namespace LightTestLib
         public LightHolder(Color startColor)
         {
             _rnd = new Random();
+            //LogitechGSDK.LogiLedSetTargetDevice(0);
 
             ColorList = new List<Color>();
 
@@ -51,13 +52,19 @@ namespace LightTestLib
             ColorList.Add(new Color(99, 99, 99));
 
             LogitechGSDK.LogiLedInit();
+            
+            ////LogitechGSDK.LogiLedInitWithName("SetTargetZone Sample C#");
+            //LogitechGSDK.LogiLedSetLighting(0, 0, 0);
+            ////LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
+            //LogitechGSDK.LogiLedFlashLighting(40, 10, 20, 500000, 200);
+
             ActiveColor = startColor;
         }
 
         public void Flash(int redPercentage, int greenPercentage, int bluePercentage, int milliSecondsDuration, int milliSecondsInterval)
         {
-            LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_RGB);
-            LogitechGSDK.LogiLedFlashLighting(redPercentage,greenPercentage,bluePercentage, milliSecondsDuration, milliSecondsDuration);
+           // LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_RGB);
+            LogitechGSDK.LogiLedFlashLighting(redPercentage,greenPercentage,bluePercentage, milliSecondsDuration, milliSecondsInterval);
 
         }
 

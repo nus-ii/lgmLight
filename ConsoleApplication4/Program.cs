@@ -88,6 +88,7 @@ namespace ConsoleApplication4
             if(answerA.Contains("f") || string.IsNullOrEmpty(answerA))
             {
                 ParameterMaster pm = new ParameterMaster(new List<string> { "r", "g", "b", "dur","int"});
+                LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
                 lh.Flash(pm.GetValueInt("r"), pm.GetValueInt("g"), pm.GetValueInt("b"), pm.GetValueInt("dur"), pm.GetValueInt("int"));
                 Console.ReadLine();
             }
