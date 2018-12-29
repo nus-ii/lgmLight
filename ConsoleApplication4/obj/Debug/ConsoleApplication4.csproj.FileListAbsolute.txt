@@ -7,3 +7,10 @@ C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\Cons
 C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\obj\Debug\ConsoleApplication4.exe
 C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\ConsoleApplication4\obj\Debug\ConsoleApplication4.pdb
 C:\GitHub\lgmLight\ConsoleApplication4\bin\Debug\ConsoleApplication4.exe.config
+C:\GitHub\lgmLight\ConsoleApplication4\bin\Debug\ConsoleApplication4.exe
+C:\GitHub\lgmLight\ConsoleApplication4\bin\Debug\ConsoleApplication4.pdb
+C:\GitHub\lgmLight\ConsoleApplication4\bin\Debug\LightTestLib.dll
+C:\GitHub\lgmLight\ConsoleApplication4\bin\Debug\LightTestLib.pdb
+C:\GitHub\lgmLight\ConsoleApplication4\obj\Debug\ConsoleApplication4.csprojResolveAssemblyReference.cache
+C:\GitHub\lgmLight\ConsoleApplication4\obj\Debug\ConsoleApplication4.exe
+C:\GitHub\lgmLight\ConsoleApplication4\obj\Debug\ConsoleApplication4.pdb

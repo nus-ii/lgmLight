@@ -3,3 +3,8 @@ C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\Ligh
 C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\LightTestLib\obj\Debug\LightTestLib.dll
 C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\LightTestLib\obj\Debug\LightTestLib.pdb
 C:\Users\Илья\Documents\Visual Studio 2015\Projects\ConsoleApplication4\LightTestLib\obj\Debug\LightTestLib.csprojResolveAssemblyReference.cache
+C:\GitHub\lgmLight\LightTestLib\bin\Debug\LightTestLib.dll
+C:\GitHub\lgmLight\LightTestLib\bin\Debug\LightTestLib.pdb
+C:\GitHub\lgmLight\LightTestLib\obj\Debug\LightTestLib.csprojResolveAssemblyReference.cache
+C:\GitHub\lgmLight\LightTestLib\obj\Debug\LightTestLib.dll
+C:\GitHub\lgmLight\LightTestLib\obj\Debug\LightTestLib.pdb

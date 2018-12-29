@@ -34,13 +34,18 @@ namespace ConsoleApplication4
                 Console.WriteLine(s);
             }
             
-            
+                        
             string answerA = Console.ReadLine();
 
            
-            if (answerA.Contains("r"))
+            if (answerA.isFirstKey('r'))
             {
-                lh.RandomShow(450, 500000);
+                lh.RandomShow(450);
+
+                for(;;)
+                {
+                    Console.WriteLine("random show");
+                }
 
             }
 
@@ -58,7 +63,7 @@ namespace ConsoleApplication4
                 int mm = Convert.ToInt32(m);
 
                 PauseTo(hh, mm);
-                lh.RandomShow(450, 500000);
+                lh.RandomShow(450);
                 Thread.Sleep(15000);
             }
 
@@ -81,7 +86,7 @@ namespace ConsoleApplication4
             {
 
                 ParameterMaster pm = new ParameterMaster(new List<string> {"r","g","b" });
-                lh.ActiveColor = new Color(pm.GetValueInt("r"), pm.GetValueInt("g"), pm.GetValueInt("b"));
+                lh.ActiveColor = new Color(pm.GetInt("r"), pm.GetInt("g"), pm.GetInt("b"));
                 Console.ReadLine();
             }
 
@@ -89,7 +94,7 @@ namespace ConsoleApplication4
             {
                 ParameterMaster pm = new ParameterMaster(new List<string> { "r", "g", "b", "dur","int"});
                 LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
-                lh.Flash(pm.GetValueInt("r"), pm.GetValueInt("g"), pm.GetValueInt("b"), pm.GetValueInt("dur"), pm.GetValueInt("int"));
+                lh.Flash(pm.GetInt("r"), pm.GetInt("g"), pm.GetInt("b"), pm.GetInt("dur"), pm.GetInt("int"));
                 Console.ReadLine();
             }
 
@@ -153,12 +158,63 @@ namespace ConsoleApplication4
             }
         }
 
-        public int GetValueInt(string key)
+        public int GetInt(string key)
         {
             string result = "";
             result = parameters.FirstOrDefault(p=>p.Key==key).Value;
 
             return Int32.Parse(result);
         }
+
+        
+    }//Program
+
+    public static class LetterMaster
+    {
+        private static string ruKeyMap = @"йцукенгшщзхъфывапролджэ\ячсмитьбю.";
+        private static string enKeyMap = @"qwertyuiop[]asdfghjkl;'\zxcvbnm,./";
+
+        public static bool isKey(char a, char b)
+        {
+            if (b == a || b == GetBrother(a))
+                return true;
+
+            return false;
+        }
+
+        public static bool isFirstKey(this string target, char f)
+        {
+            return isKey(target[0], f);
+        }
+
+        private static char GetBrother(char a)
+        {
+            if (ruKeyMap.Contains(a))
+            {
+                return enKeyMap[Position(a, ruKeyMap)];
+            }
+            else
+            {
+                return ruKeyMap[Position(a, enKeyMap)];
+            }
+        }
+
+        private static int Position(char target, string map)
+        {
+            int result = -1;
+
+            for (int i = 0; i <= map.Length - 1; i++)
+            {
+                if (map[i] == target)
+                {
+                    return i;
+                }
+            }
+
+            return result;
+
+        }
     }
-}
+
+
+}//Пространств имён

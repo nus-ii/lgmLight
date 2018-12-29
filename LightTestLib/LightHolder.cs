@@ -41,21 +41,32 @@ namespace LightTestLib
 
             ColorList = new List<Color>();
 
-            ColorList.Add(new Color(0, 0, 99));
-            ColorList.Add(new Color(0, 99, 0));
-            ColorList.Add(new Color(0, 99, 99));
+            //ColorList.Add(new Color(0, 0, 99));
+            //ColorList.Add(new Color(0, 99, 0));
+            //ColorList.Add(new Color(0, 99, 99));
 
-            ColorList.Add(new Color(99, 0, 0));
-            ColorList.Add(new Color(99, 0, 99));
-            ColorList.Add(new Color(99, 99, 0));
+            //ColorList.Add(new Color(99, 0, 0));
+            //ColorList.Add(new Color(99, 0, 99));
+            //ColorList.Add(new Color(99, 99, 0));
 
-            ColorList.Add(new Color(99, 99, 99));
+            //ColorList.Add(new Color(99, 99, 99));
+
+            var OtherColorList = new List<Color>();
+
+            for(int i = 0; i <= 999; i++)
+            {
+                int han = i / 100;
+                int dec = i / 10-(han*10);
+                int d = i - (han * 100) - (dec * 10);
+
+                ColorList.Add(new Color(han*10,dec*10,d*10));
+            }
 
             LogitechGSDK.LogiLedInit();
-            
+
             ////LogitechGSDK.LogiLedInitWithName("SetTargetZone Sample C#");
             //LogitechGSDK.LogiLedSetLighting(0, 0, 0);
-            ////LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
+            LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
             //LogitechGSDK.LogiLedFlashLighting(40, 10, 20, 500000, 200);
 
             ActiveColor = startColor;
@@ -63,8 +74,8 @@ namespace LightTestLib
 
         public void Flash(int redPercentage, int greenPercentage, int bluePercentage, int milliSecondsDuration, int milliSecondsInterval)
         {
-           // LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_RGB);
-            LogitechGSDK.LogiLedFlashLighting(redPercentage,greenPercentage,bluePercentage, milliSecondsDuration, milliSecondsInterval);
+            // LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_RGB);
+            LogitechGSDK.LogiLedFlashLighting(redPercentage, greenPercentage, bluePercentage, milliSecondsDuration, milliSecondsInterval);
 
         }
 
@@ -75,18 +86,18 @@ namespace LightTestLib
 
         public async Task<bool> Bbb()
         {
-                //ActiveColor = new Color(0,0,0);                
-                var d = DateTime.Now.AddMinutes(20);
+            //ActiveColor = new Color(0,0,0);                
+            var d = DateTime.Now.AddMinutes(20);
 
-            return await Bbb(d,DateTime.Now.AddSeconds(20));
+            return await Bbb(d, DateTime.Now.AddSeconds(20));
         }
 
-        public async Task<bool> Bbb(DateTime d,DateTime t)
+        public async Task<bool> Bbb(DateTime d, DateTime t)
         {
-           // var t = DateTime.Now.AddSeconds(20);
+            // var t = DateTime.Now.AddSeconds(20);
             for (;;)
             {
-               
+
                 if (d < DateTime.Now)
                 {
                     break;
@@ -97,45 +108,33 @@ namespace LightTestLib
                     {
                         SetOtherColor();
                         t = t.AddSeconds(5);
-                        return await Bbb(d,t);
+                        return await Bbb(d, t);
                     }
                 }
-            }  
-            return true;
-        }
-
-        public async Task<bool> cum()
-        {
-            stop = false;
-
-            SetOtherColor();
-            //Thread.Sleep(300);
-
-            return true;
-        }
-
-        public void SetOtherColor()
-        {
-            List<Color> temp = new List<Color>();
-
-            foreach (var c in ColorList)
-            {
-                if (c != _activeColor)
-                {
-                    temp.Add(c);
-                }
             }
+            return true;
+        }
+               
+        public async Task<int> SetOtherColor()
+        {
+            int result = await Task.Run(() =>
+            {
+                List<Color> tempColorList = ColorList.Where(c => c != _activeColor).ToList();
 
-            var r = _rnd.Next(0, temp.Count - 1);
+                int r = _rnd.Next(0, tempColorList.Count - 1);
 
-            ActiveColor = temp[r];
+                ActiveColor = tempColorList[r];
+
+                return r;
+            });
+            return result;
         }
 
-        public void RandomShow(int gap, int count)
+        public async void RandomShow(int gap)
         {
-            for (int i = count; count > 0; count--)
+            for (;;)
             {
-                SetOtherColor();
+                await SetOtherColor();
                 Thread.Sleep(gap);
             }
         }
