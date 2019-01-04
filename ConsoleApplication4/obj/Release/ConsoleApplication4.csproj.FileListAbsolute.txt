@@ -1,0 +1,8 @@
+C:\GitHub\lgmLight\ConsoleApplication4\bin\Release\ConsoleApplication4.exe.config
+C:\GitHub\lgmLight\ConsoleApplication4\bin\Release\ConsoleApplication4.exe
+C:\GitHub\lgmLight\ConsoleApplication4\bin\Release\ConsoleApplication4.pdb
+C:\GitHub\lgmLight\ConsoleApplication4\bin\Release\LightTestLib.dll
+C:\GitHub\lgmLight\ConsoleApplication4\bin\Release\LightTestLib.pdb
+C:\GitHub\lgmLight\ConsoleApplication4\obj\Release\ConsoleApplication4.csprojResolveAssemblyReference.cache
+C:\GitHub\lgmLight\ConsoleApplication4\obj\Release\ConsoleApplication4.exe
+C:\GitHub\lgmLight\ConsoleApplication4\obj\Release\ConsoleApplication4.pdb

@@ -37,37 +37,13 @@ namespace LightTestLib
         public LightHolder(Color startColor)
         {
             _rnd = new Random();
-            //LogitechGSDK.LogiLedSetTargetDevice(0);
+            
 
-            ColorList = new List<Color>();
+           
 
-            ColorList.Add(new Color(0, 0, 99));
-            ColorList.Add(new Color(0, 99, 0));
-            ColorList.Add(new Color(0, 99, 99));
-
-            ColorList.Add(new Color(99, 0, 0));
-            ColorList.Add(new Color(99, 0, 99));
-            ColorList.Add(new Color(99, 99, 0));
-
-            ColorList.Add(new Color(99, 99, 99));
-
-            var OtherColorList = new List<Color>();
-
-            //for(int i = 0; i <= 999; i++)
-            //{
-            //    int han = i / 100;
-            //    int dec = i / 10-(han*10);
-            //    int d = i - (han * 100) - (dec * 10);
-
-            //    ColorList.Add(new Color(han*10,dec*10,d*10));
-            //}
-
+           
             LogitechGSDK.LogiLedInit();
-
-            ////LogitechGSDK.LogiLedInitWithName("SetTargetZone Sample C#");
-            //LogitechGSDK.LogiLedSetLighting(0, 0, 0);
             LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
-            //LogitechGSDK.LogiLedFlashLighting(40, 10, 20, 500000, 200);
 
             ActiveColor = startColor;
         }
@@ -83,6 +59,46 @@ namespace LightTestLib
         {
 
         }
+
+        public List<Color> GetColorListEight(bool withBlack=false)
+        {
+            ColorList = new List<Color>();
+
+            ColorList.Add(new Color(0, 0, 99));
+            ColorList.Add(new Color(0, 99, 0));
+            ColorList.Add(new Color(0, 99, 99));
+
+            ColorList.Add(new Color(99, 0, 0));
+            ColorList.Add(new Color(99, 0, 99));
+            ColorList.Add(new Color(99, 99, 0));
+
+            ColorList.Add(new Color(99, 99, 99));
+
+            if(withBlack)
+                ColorList.Add(new Color(0, 0, 0));
+
+            return ColorList;
+        }
+
+        public List<Color> GetColorListThousand(bool withBlack = false)
+        {
+            ColorList = new List<Color>();
+
+            for (int i = 0; i <= 999; i++)
+            {
+                int han = i / 100;
+                int dec = i / 10 - (han * 10);
+                int d = i - (han * 100) - (dec * 10);
+
+                ColorList.Add(new Color(han * 10, dec * 10, d * 10));
+            }
+
+            if (!withBlack)
+                ColorList = ColorList.Where(c => c != new Color(0, 0, 0)).ToList();
+
+            return ColorList;
+        }
+
 
         public async void PulseAsync(Color targetColor, int milliSecondsInterval)
         {
@@ -101,11 +117,11 @@ namespace LightTestLib
         }
 
 
-        public async Task<int> SetOtherColor()
+        public async Task<int> SetOtherColorAsync(List<Color> colorList)
         {
             int result = await Task.Run(() =>
             {
-                List<Color> tempColorList = ColorList.Where(c => c != _activeColor).ToList();
+                List<Color> tempColorList = colorList.Where(c => c != _activeColor).ToList();
 
                 int r = _rnd.Next(0, tempColorList.Count - 1);
 
@@ -116,21 +132,21 @@ namespace LightTestLib
             return result;
         }
 
-        public async void RandomShow(int gap)
+        public async void RandomShowAsync(int gap, List<Color> colorList)
         {
             for (;;)
             {
-                await SetOtherColor();
+                await SetOtherColorAsync(colorList);
                 Thread.Sleep(gap);
             }
         }
 
-        public async void BlinkListAsync(List<Color> colors, int gapMs)
+        public async void BlinkListAsync(List<Color> colorList, int gapMs)
         {
 
             for (;;)
             {
-                foreach (Color c in colors)
+                foreach (Color c in colorList)
                 {
 
                     int result = await Task.Run(() =>

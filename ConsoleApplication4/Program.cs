@@ -54,7 +54,8 @@ namespace ConsoleApplication4
 
             if (answerA.isFirstKey('r'))
             {
-                lh.RandomShow(450);
+
+                lh.RandomShowAsync(300, lh.GetColorListThousand());
             }
 
             if (answerA.isFirstKey('l'))
@@ -64,7 +65,7 @@ namespace ConsoleApplication4
                 ParameterMaster pm = new ParameterMaster(new List<string> { "Hour", "Minute" });
 
                 PauseTo(pm.GetInt("Hour"), pm.GetInt("Minute"));
-                lh.RandomShow(450);
+                lh.RandomShowAsync(300, lh.GetColorListEight());
                 Thread.Sleep(15000);
             }
 
@@ -98,10 +99,9 @@ namespace ConsoleApplication4
                 for (;;)
                 {
                     lh.ActiveColor = new Color(90, 40, 20);
-                    Thread.Sleep(1);
-                    lh.ActiveColor = new Color(90, 60, 20);
-                    lh.ActiveColor = new Color(90, 90, 0);
-                    Thread.Sleep(2);
+                    Thread.Sleep(10);                 
+                    lh.ActiveColor = new Color(0, 0, 0);
+                    Thread.Sleep(20);
                 }
             }
         }
