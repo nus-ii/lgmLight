@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LightTestLib
 {
-    public class Color
+    public class Color :IEquatable<Color>
     {
         public int R;
         public int G;
@@ -17,6 +17,11 @@ namespace LightTestLib
             R = r;
             G = g;
             B = b;
+        }      
+
+        public bool Equals(Color other)
+        {
+            return R == other.R && G == other.G && B == other.B;
         }
     }
 }

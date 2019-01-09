@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LightTestLib;
 using LedCSharp;
+using System.Management;
+using System.Device;
+
 
 namespace WindowsFormsApplication1
 {
@@ -68,9 +71,9 @@ namespace WindowsFormsApplication1
             //var dh = 0;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
-            lc.ButtonC += lh.SetOtherColor;
+           // lc.ButtonC += await lh.SetOtherColorAsync();
             timer1.Start();
         }
 
@@ -81,7 +84,7 @@ namespace WindowsFormsApplication1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            lc.ButtonC -= lh.SetOtherColor;
+            //lc.ButtonC -= lh.SetOtherColor;
             timer1.Stop();
         }
 
@@ -97,5 +100,70 @@ namespace WindowsFormsApplication1
             label1.Text = timer1.Interval.ToString() + " ms";
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            List<USBDeviceInfo> d = GetUSBDevices();  
+
+            List<USBDeviceInfo> result = new List<USBDeviceInfo>();
+
+            foreach(var i in d)
+            {
+                if(!string.IsNullOrEmpty(i.Description) && i.Description[0]=='L')
+                {                   
+                    result.Add(i);
+                }
+            }
+
+
+            if(result.Any(i=>i.Description.Contains("Mouse")))
+            {
+                button7.Text = "Mouse=true ";
+            }
+
+            if (result.Any(i => i.Description.Contains("300") && i.Description.Contains("Mouse")))
+            {
+                button7.Text = button7.Text+"300=true";
+            }
+        }
+
+        static List<USBDeviceInfo> GetUSBDevices()
+        {
+            List<USBDeviceInfo> devices = new List<USBDeviceInfo>();
+
+            System.Management.ManagementObjectCollection collection;
+            using (var searcher = new ManagementObjectSearcher(@"Select * From Win32_PnPEntity"))
+                collection = searcher.Get();
+
+            foreach (var device in collection)
+            {
+                devices.Add(new USBDeviceInfo(
+                (string)device.GetPropertyValue("DeviceID"),
+                (string)device.GetPropertyValue("PNPDeviceID"),
+                (string)device.GetPropertyValue("Description")
+                ));
+            }
+
+            collection.Dispose();
+            return devices;
+        }
+    }
+
+    public class USBDeviceInfo
+    {
+        public USBDeviceInfo(string deviceID, string pnpDeviceID, string description)
+        {
+            this.DeviceID = deviceID;
+            this.PnpDeviceID = pnpDeviceID;
+            this.Description = description;
+        }
+        public string DeviceID { get; private set; }
+        public string PnpDeviceID { get; private set; }
+        public string Description { get; private set; }     
+
+
+        public override string ToString()
+        {
+            return Description;
+        }
     }
 }

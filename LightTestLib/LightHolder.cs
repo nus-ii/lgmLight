@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace LightTestLib
 {
-    public class LightHolder
+    public class LightHolder : ILightHolder
     {
         private Color _activeColor;
 
@@ -18,12 +18,17 @@ namespace LightTestLib
 
         public LightTask nTask;
 
+        /// <summary>
+        /// Текущий цвет
+        /// </summary>
         public Color ActiveColor
         {
             set
             {
                 _activeColor = value;
-                LogitechGSDK.LogiLedSetLighting(value.R, value.G, value.B);
+                //LogitechGSDK.LogiLedSetLighting(value.R, value.G, value.B);
+                LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, value.R, value.G, value.B);
+                LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 1, value.R, value.G, value.B);
             }
 
             get
@@ -31,75 +36,57 @@ namespace LightTestLib
                 return _activeColor;
             }
         }
-
-        private List<Color> ColorList;
+ 
 
         public LightHolder(Color startColor)
         {
             _rnd = new Random();
-            
-
-           
-
-           
             LogitechGSDK.LogiLedInit();
-            LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
+            //LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
 
             ActiveColor = startColor;
         }
-
-        //public void Flash(int redPercentage, int greenPercentage, int bluePercentage, int milliSecondsDuration, int milliSecondsInterval)
-        //{            
-        //    LogitechGSDK.LogiLedFlashLighting(redPercentage, greenPercentage, bluePercentage, milliSecondsDuration, milliSecondsInterval);
-
-        //}
-
 
         public LightHolder() : this(new Color(0, 0, 0))
         {
 
         }
 
-        public List<Color> GetColorListEight(bool withBlack=false)
+        
+
+        /// <summary>
+        /// Получение списка базовых цветов для данной версии мыши
+        /// </summary>
+        /// <returns></returns>
+        public virtual List<Color> GetBaseColors(bool withBlack = false)
         {
-            ColorList = new List<Color>();
-
-            ColorList.Add(new Color(0, 0, 99));
-            ColorList.Add(new Color(0, 99, 0));
-            ColorList.Add(new Color(0, 99, 99));
-
-            ColorList.Add(new Color(99, 0, 0));
-            ColorList.Add(new Color(99, 0, 99));
-            ColorList.Add(new Color(99, 99, 0));
-
-            ColorList.Add(new Color(99, 99, 99));
-
-            if(withBlack)
-                ColorList.Add(new Color(0, 0, 0));
-
-            return ColorList;
-        }
-
-        public List<Color> GetColorListThousand(bool withBlack = false)
-        {
-            ColorList = new List<Color>();
-
-            for (int i = 0; i <= 999; i++)
+            List<Color> result = new List<Color>();
+            for (int i = 0; i <= 2; i++)
             {
-                int han = i / 100;
-                int dec = i / 10 - (han * 10);
-                int d = i - (han * 100) - (dec * 10);
-
-                ColorList.Add(new Color(han * 10, dec * 10, d * 10));
+                for (int s = 0; s <= 100; s++)
+                {
+                    if (i == 0)
+                    {
+                        result.Add(new Color(s, 0, 100));
+                    }
+                    if (i == 1)
+                    {
+                        result.Add(new Color(0, s, 100));
+                    }
+                    if (i == 2)
+                    {
+                        result.Add(new Color(0, 100, s));
+                    }
+                }
             }
-
-            if (!withBlack)
-                ColorList = ColorList.Where(c => c != new Color(0, 0, 0)).ToList();
-
-            return ColorList;
+            return result;
         }
 
-
+        /// <summary>
+        /// Пульсация (Эффект дыхания) только для RGB моделей
+        /// </summary>
+        /// <param name="targetColor"></param>
+        /// <param name="milliSecondsInterval"></param>
         public async void PulseAsync(Color targetColor, int milliSecondsInterval)
         {
 
@@ -116,7 +103,11 @@ namespace LightTestLib
          });
         }
 
-
+        /// <summary>
+        /// Установить любой цвет из списка не равный текущему
+        /// </summary>
+        /// <param name="colorList">Список цветов для выбора</param>
+        /// <returns></returns>
         public async Task<int> SetOtherColorAsync(List<Color> colorList)
         {
             int result = await Task.Run(() =>
@@ -132,15 +123,25 @@ namespace LightTestLib
             return result;
         }
 
-        public async void RandomShowAsync(int gap, List<Color> colorList)
+        /// <summary>
+        /// Случайный перебор цветов по списку с заданным промежутком
+        /// </summary>
+        /// <param name="gapMs">Промежуток</param>
+        /// <param name="colorList">Список цветов</param>
+        public async void RandomShowAsync(int gapMs, List<Color> colorList)
         {
             for (;;)
             {
                 await SetOtherColorAsync(colorList);
-                Thread.Sleep(gap);
+                Thread.Sleep(gapMs);
             }
         }
 
+        /// <summary>
+        /// Последовательный перебор цветов 
+        /// </summary>
+        /// <param name="colorList">Список цветов</param>
+        /// <param name="gapMs">Промежуток</param>
         public async void BlinkListAsync(List<Color> colorList, int gapMs)
         {
 

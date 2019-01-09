@@ -15,3 +15,8 @@ C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.P
 C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\GitHub\lgmLight\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\GitHub\lgmLight\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\GitHub\lgmLight\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\GitHub\lgmLight\WindowsFormsApplication1\bin\Debug\LightTestLib.dll
+C:\GitHub\lgmLight\WindowsFormsApplication1\bin\Debug\LightTestLib.pdb

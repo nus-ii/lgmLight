@@ -39,6 +39,8 @@ namespace ConsoleApplication4
             if (string.IsNullOrEmpty(target))
                 return false;
 
+            target = target.ToLower();
+
             return isKey(target[0], f);
         }
 
