@@ -8,7 +8,8 @@ namespace LightTestLib
         Color ActiveColor { get; set; }
 
         void BlinkListAsync(List<Color> colorList, int gapMs);
-        List<Color> GetBaseColors(bool withBlack = false);
+        
+        List<Color> BaseColors { get; }
         void PulseAsync(Color targetColor, int milliSecondsInterval);
         void RandomShowAsync(int gapMs, List<Color> colorList);
         Task<int> SetOtherColorAsync(List<Color> colorList);

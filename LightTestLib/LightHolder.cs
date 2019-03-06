@@ -18,6 +18,23 @@ namespace LightTestLib
 
         public LightTask nTask;
 
+        public List<Color> BaseColors
+        {
+            get
+            {
+                if (_baseColor == null || _baseColor.Count == 0)
+                {
+                    _baseColor = GetBaseColors();
+                }
+                return _baseColor;
+            }
+
+        }
+
+        private bool _readyToSetColor;
+
+        private List<Color> _baseColor;
+
         /// <summary>
         /// Текущий цвет
         /// </summary>
@@ -38,13 +55,14 @@ namespace LightTestLib
                 return _activeColor;
             }
         }
- 
+
 
         public LightHolder(Color startColor)
         {
             _rnd = new Random();
             LogitechGSDK.LogiLedInit();
             //LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
+            _readyToSetColor = true;
 
             ActiveColor = startColor;
         }
@@ -54,7 +72,7 @@ namespace LightTestLib
 
         }
 
-        
+
 
         /// <summary>
         /// Получение списка базовых цветов для данной версии мыши
@@ -121,14 +139,25 @@ namespace LightTestLib
 
         public int SetOtherColor(List<Color> colorList)
         {
+            if (_readyToSetColor)
+            {
+                _readyToSetColor = false;
 
-            List<Color> tempColorList = colorList.Where(c => c != _activeColor).ToList();
+                int r = 0;
+                for (;;)
+                {
+                    r = _rnd.Next(0, colorList.Count - 1);
 
-            int r = _rnd.Next(0, tempColorList.Count - 1);
-
-            ActiveColor = tempColorList[r];
-
-            return r;
+                    if (colorList[r] != ActiveColor)
+                    {
+                        ActiveColor = colorList[r];
+                        break;
+                    }
+                }
+                _readyToSetColor = true;
+                return r;
+            }
+            return 0;
         }
 
         /// <summary>

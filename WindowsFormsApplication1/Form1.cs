@@ -180,19 +180,8 @@ namespace WindowsFormsApplication1
 
         async void gkh_KeyDown(object sender, KeyEventArgs e)
         {
-            
-            //e.Handled = true;
-
-            List<LightTestLib.Color> cList = new List<LightTestLib.Color>
-            {
-                new LightTestLib.Color(40,50,0),
-                new LightTestLib.Color(90,0,0),
-                new LightTestLib.Color(90,0,90),
-                new LightTestLib.Color(90,90,0)
-            };
-            cList = lh.GetBaseColors();            
-            await lh.SetOtherColorAsync(cList);
-           // aSendKeys.Send("{ENTER}");
+            var cList = lh.BaseColors;           
+            lh.SetOtherColor(cList);
         }
     }
 

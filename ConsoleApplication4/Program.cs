@@ -31,10 +31,10 @@ namespace ConsoleApplication4
 
         static void BasicFunc()
         {
-            //var usbDevices = GetUSBDevices();
             ILightHolder lh;
             LogitechGSDK.LogiLedInitWithName("SetTargetZone Sample C#");
-            if (false)
+
+            if (true)
             {
                 lh = new LightHolderSparta();
             }
@@ -42,6 +42,7 @@ namespace ConsoleApplication4
             {
                 lh = new LightHolder();
             }
+
             List<string> menu = new List<string>
             {
                 "r - random show",
@@ -64,7 +65,7 @@ namespace ConsoleApplication4
             if (answerA.isFirstKey('r'))
             {
 
-                lh.RandomShowAsync(300, lh.GetBaseColors());
+                lh.RandomShowAsync(300, lh.BaseColors);
             }
 
             if (answerA.isFirstKey('l'))
@@ -74,8 +75,7 @@ namespace ConsoleApplication4
                 ParameterMaster pm = new ParameterMaster(new List<string> { "Hour", "Minute" });
 
                 PauseTo(pm.GetInt("Hour"), pm.GetInt("Minute"));
-                lh.RandomShowAsync(300, lh.GetBaseColors());
-                Thread.Sleep(15000);
+                lh.RandomShowAsync(300, lh.BaseColors);
             }
 
             if (answerA.isFirstKey('b'))
@@ -100,32 +100,7 @@ namespace ConsoleApplication4
                 ParameterMaster pm = new ParameterMaster(new List<string> { "int" });
                 lh.PulseAsync(ParameterMaster.GetColor("Insert color!"), pm.GetInt("int"));
                 Console.ReadLine();
-            }
-
-            if (answerA.isFirstKey('m'))
-            {
-                //;
-                var colors = lh.GetBaseColors();
-                //foreach (var sci in sc)
-                //{
-                foreach (var c in colors)
-                {
-                    lh.ActiveColor = c;
-                    Thread.Sleep(25);
-                }
-                //lh.ActiveColor = new Color(0, 0, 0);
-                //Thread.Sleep(200);
-                //}
-                //for (int i=0;i<=sc.Count();i++)
-                //{
-
-
-                //    //lh.ActiveColor = new Color(90, 60, 30);
-                //    //Thread.Sleep(500);                 
-                //    //lh.ActiveColor = new Color(60, 20, 10);
-                //    //Thread.Sleep(500);
-                //}
-            }
+            }            
         }
 
 
@@ -179,9 +154,5 @@ namespace ConsoleApplication4
 
             return Int32.Parse(result);
         }
-
-
     }
-
-
 }//Пространств имён
