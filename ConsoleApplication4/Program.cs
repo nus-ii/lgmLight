@@ -33,8 +33,8 @@ namespace ConsoleApplication4
         {
             //var usbDevices = GetUSBDevices();
             ILightHolder lh;
-
-            if (true)
+            LogitechGSDK.LogiLedInitWithName("SetTargetZone Sample C#");
+            if (false)
             {
                 lh = new LightHolderSparta();
             }

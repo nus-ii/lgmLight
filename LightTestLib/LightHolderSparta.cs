@@ -27,5 +27,19 @@ namespace LightTestLib
 
             return ColorList;
         }
+
+        public override Color ActiveColor
+        {
+            set
+            {
+                this._activeColor = value;
+                LedCSharp.LogitechGSDK.LogiLedSetLighting(value.R, value.G, value.B);
+            }
+
+            get
+            {
+                return _activeColor;
+            }
+        }
     }
 }

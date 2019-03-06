@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="globalKeyboardHook.cs" />
     <Compile Include="Engine\Condition.cs" />
     <Compile Include="Engine\WorkModes.cs" />
     <Compile Include="Form1.cs">

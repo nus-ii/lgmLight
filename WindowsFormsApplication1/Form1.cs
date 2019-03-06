@@ -11,6 +11,7 @@ using LightTestLib;
 using LedCSharp;
 using System.Management;
 using System.Device;
+using Utilities;
 
 
 namespace WindowsFormsApplication1
@@ -19,11 +20,14 @@ namespace WindowsFormsApplication1
     {
         LightHolder lh;
         lightcaller lc;
+        globalKeyboardHook gkh;
         public Form1()
         {
             InitializeComponent();
             lh = new LightHolder();
             lc = new lightcaller();
+            gkh = new globalKeyboardHook();
+            lh.ActiveColor = new LightTestLib.Color(10, 50, 80);
             //lc.ButtonC += lh.SetOtherColor;
 
             notifyIcon1.Visible = true;
@@ -73,13 +77,27 @@ namespace WindowsFormsApplication1
 
         private async void button3_Click(object sender, EventArgs e)
         {
-           // lc.ButtonC += await lh.SetOtherColorAsync();
+            lc.ButtonC += lh.SetOtherColor;
+            timer1.Interval = 1000;
             timer1.Start();
+        }
+
+        private int Lc_ButtonC()
+        {
+            throw new NotImplementedException();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lc.clickClick();
+            List<LightTestLib.Color> cList = new List<LightTestLib.Color>
+            {
+                new LightTestLib.Color(40,50,0),
+                new LightTestLib.Color(90,0,0),
+                new LightTestLib.Color(90,0,90),
+                new LightTestLib.Color(90,90,0)
+            };
+
+            lc.clickClick(cList);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -145,6 +163,36 @@ namespace WindowsFormsApplication1
 
             collection.Dispose();
             return devices;
+        }
+
+        private void Hook_Click(object sender, EventArgs e)
+        {
+
+
+            
+            for(int? c=0;c<254;c++)
+            { gkh.HookedKeys.Add((Keys)c); }
+            
+
+            gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
+        }
+
+
+        async void gkh_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            //e.Handled = true;
+
+            List<LightTestLib.Color> cList = new List<LightTestLib.Color>
+            {
+                new LightTestLib.Color(40,50,0),
+                new LightTestLib.Color(90,0,0),
+                new LightTestLib.Color(90,0,90),
+                new LightTestLib.Color(90,90,0)
+            };
+            cList = lh.GetBaseColors();            
+            await lh.SetOtherColorAsync(cList);
+           // aSendKeys.Send("{ENTER}");
         }
     }
 

@@ -7,3 +7,8 @@ D:\Downloads\LED_SDK_9.00\LED\Samples\Logi_SetTargetZone_Sample_CS\Logi_SetTarge
 C:\Users\Илья\Desktop\LCS\Logi_SetTargetZone_Sample_CS\bin\x86\Debug\Logi_SetTargetZone_Sample_CS.exe.config
 C:\Users\Илья\Desktop\LCS\Logi_SetTargetZone_Sample_CS\obj\x86\Debug\Logi_SetTargetZone_Sample_CS.exe
 C:\Users\Илья\Desktop\LCS\Logi_SetTargetZone_Sample_CS\obj\x86\Debug\Logi_SetTargetZone_Sample_CS.pdb
+C:\GitHub\lgmLight\lib\Logi_SetTargetZone_Sample_CS\bin\x86\Debug\Logi_SetTargetZone_Sample_CS.exe.config
+C:\GitHub\lgmLight\lib\Logi_SetTargetZone_Sample_CS\bin\x86\Debug\Logi_SetTargetZone_Sample_CS.exe
+C:\GitHub\lgmLight\lib\Logi_SetTargetZone_Sample_CS\bin\x86\Debug\Logi_SetTargetZone_Sample_CS.pdb
+C:\GitHub\lgmLight\lib\Logi_SetTargetZone_Sample_CS\obj\x86\Debug\Logi_SetTargetZone_Sample_CS.exe
+C:\GitHub\lgmLight\lib\Logi_SetTargetZone_Sample_CS\obj\x86\Debug\Logi_SetTargetZone_Sample_CS.pdb

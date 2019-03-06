@@ -22,7 +22,7 @@ namespace Logi_SetTargetZone_Sample_CS
 
             Console.WriteLine("LED SDK Initialized");
 
-            LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_ALL);
+            LogitechGSDK.LogiLedSetTargetDevice(LogitechGSDK.LOGI_DEVICETYPE_RGB);
 
             // Set all devices to Black
             LogitechGSDK.LogiLedSetLighting(0, 0, 0);
@@ -34,7 +34,8 @@ namespace Logi_SetTargetZone_Sample_CS
             LogitechGSDK.LogiLedSetLightingForKeyWithKeyName(keyboardNames.I, 0, 100, 100);
 
             // Set RGB mouse logo to Red
-            LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
+            LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 1, 100, 0, 100);
+            LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 100);
 
             // Set G213 keyboard zones to Red, Yellow, Green, Cyan, Blue
             LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Keyboard, 1, 100, 0, 0);

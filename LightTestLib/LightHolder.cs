@@ -10,7 +10,7 @@ namespace LightTestLib
 {
     public class LightHolder : ILightHolder
     {
-        private Color _activeColor;
+        protected Color _activeColor { get; set; }
 
         private Random _rnd;
 
@@ -21,14 +21,16 @@ namespace LightTestLib
         /// <summary>
         /// Текущий цвет
         /// </summary>
-        public Color ActiveColor
+        public virtual Color ActiveColor
         {
             set
             {
                 _activeColor = value;
                 //LogitechGSDK.LogiLedSetLighting(value.R, value.G, value.B);
+                //LogitechGSDK.LogiLedInitWithName("SetTargetZone Sample C#");
                 LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, value.R, value.G, value.B);
                 LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 1, value.R, value.G, value.B);
+                //LogitechGSDK.LogiLedSetLighting(value.R, value.G, value.B);
             }
 
             get
@@ -112,15 +114,21 @@ namespace LightTestLib
         {
             int result = await Task.Run(() =>
             {
-                List<Color> tempColorList = colorList.Where(c => c != _activeColor).ToList();
-
-                int r = _rnd.Next(0, tempColorList.Count - 1);
-
-                ActiveColor = tempColorList[r];
-
-                return r;
+                return SetOtherColor(colorList);
             });
             return result;
+        }
+
+        public int SetOtherColor(List<Color> colorList)
+        {
+
+            List<Color> tempColorList = colorList.Where(c => c != _activeColor).ToList();
+
+            int r = _rnd.Next(0, tempColorList.Count - 1);
+
+            ActiveColor = tempColorList[r];
+
+            return r;
         }
 
         /// <summary>

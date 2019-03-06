@@ -1,0 +1,6 @@
+C:\GitHub\lgmLight\lib\Logi_SetTargetZone_Sample_CS\bin\x64\Release\Logi_SetTargetZone_Sample_CS.exe.config
+C:\GitHub\lgmLight\lib\Logi_SetTargetZone_Sample_CS\bin\x64\Release\Logi_SetTargetZone_Sample_CS.exe
+C:\GitHub\lgmLight\lib\Logi_SetTargetZone_Sample_CS\bin\x64\Release\Logi_SetTargetZone_Sample_CS.pdb
+C:\GitHub\lgmLight\lib\Logi_SetTargetZone_Sample_CS\obj\x64\Release\Logi_SetTargetZone_Sample_CS.exe
+C:\GitHub\lgmLight\lib\Logi_SetTargetZone_Sample_CS\obj\x64\Release\Logi_SetTargetZone_Sample_CS.pdb
+C:\GitHub\lgmLight\lib\Logi_SetTargetZone_Sample_CS\obj\x64\Release\Logi_SetTargetZone_Sample_CS.csprojResolveAssemblyReference.cache

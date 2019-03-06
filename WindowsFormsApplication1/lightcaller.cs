@@ -8,13 +8,13 @@ namespace WindowsFormsApplication1
 {
     public class lightcaller
     {
-        public delegate void vDelegate();
+        public delegate int vDelegate(List<LightTestLib.Color> cList);
 
         public event vDelegate ButtonC;
 
-        public void clickClick()
+        public void clickClick(List<LightTestLib.Color> cList)
         {
-            ButtonC();
+            ButtonC(cList);
         }
 
     }
