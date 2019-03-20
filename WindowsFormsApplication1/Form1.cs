@@ -24,7 +24,7 @@ namespace WindowsFormsApplication1
         public Form1()
         {
             InitializeComponent();
-            lh = new LightHolder();
+            lh = new LightHolderSparta();
             lc = new lightcaller();
             gkh = new globalKeyboardHook();
             lh.ActiveColor = new LightTestLib.Color(10, 50, 80);
@@ -34,6 +34,10 @@ namespace WindowsFormsApplication1
             // добавляем Эвент или событие по 2му клику мышки, 
             //вызывая функцию  notifyIcon1_MouseDoubleClick
             this.notifyIcon1.MouseDoubleClick += new MouseEventHandler(notifyIcon1_MouseDoubleClick);
+            List<MenuItem> i = new List<MenuItem>();
+            i.Add(new MenuItem("Hook",Hook_Click));
+            i.Add(new MenuItem("Blink", button3_Click));
+            this.notifyIcon1.ContextMenu = new ContextMenu(i.ToArray());
 
             // добавляем событие на изменение окна
             this.Resize += new System.EventHandler(this.Form1_Resize);
