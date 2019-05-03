@@ -7,3 +7,4 @@ C:\GitHub\lgmLight\LightTestLib\bin\Debug\LightTestLib.dll
 C:\GitHub\lgmLight\LightTestLib\bin\Debug\LightTestLib.pdb
 C:\GitHub\lgmLight\LightTestLib\obj\Debug\LightTestLib.dll
 C:\GitHub\lgmLight\LightTestLib\obj\Debug\LightTestLib.pdb
+C:\GitHub\lgmLight\LightTestLib\obj\Debug\LightTestLib.csprojResolveAssemblyReference.cache
