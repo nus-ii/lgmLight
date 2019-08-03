@@ -14,9 +14,11 @@ C:\GitHub\lgmLight\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.e
 C:\GitHub\lgmLight\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
 C:\GitHub\lgmLight\WindowsFormsApplication1\bin\Debug\LightTestLib.dll
 C:\GitHub\lgmLight\WindowsFormsApplication1\bin\Debug\LightTestLib.pdb
-C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
 C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
 C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojAssemblyReference.cache
+C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.CoreCompileInputs.cache
+C:\GitHub\lgmLight\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.CopyComplete
