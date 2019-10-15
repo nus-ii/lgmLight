@@ -171,21 +171,18 @@ namespace WindowsFormsApplication1
 
         private void Hook_Click(object sender, EventArgs e)
         {
-
-
-            
             for(int? c=0;c<254;c++)
             { gkh.HookedKeys.Add((Keys)c); }
-            
-
             gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
         }
 
 
         async void gkh_KeyDown(object sender, KeyEventArgs e)
         {
-            var cList = lh.BaseColors;           
-            lh.SetOtherColor(cList);
+            lock(lh)
+            {
+                lh.SetOtherColor();
+            }
         }
     }
 

@@ -160,6 +160,11 @@ namespace LightTestLib
             return 0;
         }
 
+        public int SetOtherColor()
+        {
+            return SetOtherColor(this.BaseColors);
+        }
+
         /// <summary>
         /// Случайный перебор цветов по списку с заданным промежутком
         /// </summary>
