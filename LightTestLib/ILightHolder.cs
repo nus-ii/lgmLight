@@ -12,6 +12,7 @@ namespace LightTestLib
         List<Color> BaseColors { get; }
         void PulseAsync(Color targetColor, int milliSecondsInterval);
         void RandomShowAsync(int gapMs, List<Color> colorList);
-        Task<int> SetOtherColorAsync(List<Color> colorList);
+        Task<int> SetOtherColorAsync(int gapMs, List<Color> colorList);
+        void Kill();
     }
 }

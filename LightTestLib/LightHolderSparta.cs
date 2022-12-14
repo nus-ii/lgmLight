@@ -6,40 +6,40 @@ using System.Threading.Tasks;
 
 namespace LightTestLib
 {
-     public class LightHolderSparta:LightHolder,ILightHolder
+     public class LightHolderSparta //:LightHolder,ILightHolder
     {
-        public override List<Color> GetBaseColors (bool withBlack = false)
-        {
-            var ColorList = new List<Color>();
+        //public override List<Color> GetBaseColors (bool withBlack = false)
+        //{
+        //    var ColorList = new List<Color>();
 
-            ColorList.Add(new Color(0, 0, 99));
-            ColorList.Add(new Color(0, 99, 0));
-            ColorList.Add(new Color(0, 99, 99));
+        //    ColorList.Add(new Color(0, 0, 99));
+        //    ColorList.Add(new Color(0, 99, 0));
+        //    ColorList.Add(new Color(0, 99, 99));
 
-            ColorList.Add(new Color(99, 0, 0));
-            ColorList.Add(new Color(99, 0, 99));
-            ColorList.Add(new Color(99, 99, 0));
+        //    ColorList.Add(new Color(99, 0, 0));
+        //    ColorList.Add(new Color(99, 0, 99));
+        //    ColorList.Add(new Color(99, 99, 0));
 
-            ColorList.Add(new Color(99, 99, 99));
+        //    ColorList.Add(new Color(99, 99, 99));
 
-            if (withBlack)
-                ColorList.Add(new Color(0, 0, 0));
+        //    if (withBlack)
+        //        ColorList.Add(new Color(0, 0, 0));
 
-            return ColorList;
-        }
+        //    return ColorList;
+        //}
 
-        public override Color ActiveColor
-        {
-            set
-            {
-                this._activeColor = value;
-                LedCSharp.LogitechGSDK.LogiLedSetLighting(value.R, value.G, value.B);
-            }
+        //public override Color ActiveColor
+        //{
+        //    set
+        //    {
+        //        this._activeColor = value;
+        //        LedCSharp.LogitechGSDK.LogiLedSetLighting(value.R, value.G, value.B);
+        //    }
 
-            get
-            {
-                return _activeColor;
-            }
-        }
+        //    get
+        //    {
+        //        return _activeColor;
+        //    }
+        //}
     }
 }

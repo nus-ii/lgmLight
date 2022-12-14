@@ -20,8 +20,6 @@ namespace ConsoleApplication4
             for (;;)
             {
                 Console.Clear();
-                BasicFunc();
-
                 Console.ReadLine();
             }
         }
@@ -34,9 +32,9 @@ namespace ConsoleApplication4
             ILightHolder lh;
             LogitechGSDK.LogiLedInitWithName("SetTargetZone Sample C#");
 
-            if (true)
+            if (false)
             {
-                lh = new LightHolderSparta();
+               // lh = new LightHolderSparta();
             }
             else
             {

@@ -7,5 +7,4 @@ C:\GitHub\lgmLight\LightTestLib\bin\Release\LightTestLib.dll
 C:\GitHub\lgmLight\LightTestLib\bin\Release\LightTestLib.pdb
 C:\GitHub\lgmLight\LightTestLib\obj\Release\LightTestLib.dll
 C:\GitHub\lgmLight\LightTestLib\obj\Release\LightTestLib.pdb
-C:\GitHub\lgmLight\LightTestLib\obj\Release\LightTestLib.csprojAssemblyReference.cache
 C:\GitHub\lgmLight\LightTestLib\obj\Release\LightTestLib.csproj.CoreCompileInputs.cache

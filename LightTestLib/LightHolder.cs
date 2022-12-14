@@ -38,16 +38,19 @@ namespace LightTestLib
         /// <summary>
         /// Текущий цвет
         /// </summary>
-        public virtual Color ActiveColor
+        public Color ActiveColor
         {
             set
             {
-                _activeColor = value;
-                //LogitechGSDK.LogiLedSetLighting(value.R, value.G, value.B);
-                //LogitechGSDK.LogiLedInitWithName("SetTargetZone Sample C#");
-                LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, value.R, value.G, value.B);
-                LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 1, value.R, value.G, value.B);
-                //LogitechGSDK.LogiLedSetLighting(value.R, value.G, value.B);
+                if (stop == false)
+                {
+                    _activeColor = value;
+                    LogitechGSDK.LogiLedSetLighting(value.R, value.G, value.B);
+                    LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, value.R, value.G, value.B);
+                    LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 1, value.R, value.G, value.B);
+                    LogitechGSDK.LogiLedSetLighting(value.R, value.G, value.B);
+                }
+         
             }
 
             get
@@ -59,12 +62,12 @@ namespace LightTestLib
 
         public LightHolder(Color startColor)
         {
+            stop = false;
             _rnd = new Random();
-            LogitechGSDK.LogiLedInit();
-            //LogitechGSDK.LogiLedSetLightingForTargetZone(DeviceType.Mouse, 0, 100, 0, 0);
+            LogitechGSDK.LogiLedInitWithName(Guid.NewGuid().ToString().Split('-')[0]);
             _readyToSetColor = true;
-
             ActiveColor = startColor;
+            
         }
 
         public LightHolder() : this(new Color(0, 0, 0))
@@ -123,18 +126,28 @@ namespace LightTestLib
          });
         }
 
+
         /// <summary>
         /// Установить любой цвет из списка не равный текущему
         /// </summary>
+        /// <param name="gapMs"></param>
         /// <param name="colorList">Список цветов для выбора</param>
-        /// <returns></returns>
-        public async Task<int> SetOtherColorAsync(List<Color> colorList)
+        public async void SetOtherColorAsync(int gapMs,List<Color> colorList)
         {
-            int result = await Task.Run(() =>
+            await Task.Run(() =>
             {
-                return SetOtherColor(colorList);
+               SetOtherColor(colorList);
+               Thread.Sleep(gapMs);
             });
-            return result;
+            
+        }
+
+        public void Kill()
+        {
+            stop = true;
+            LogitechGSDK.LogiLedRestoreLighting();
+            LogitechGSDK.LogiLedStopEffects();
+            LogitechGSDK.LogiLedShutdown();
         }
 
         public int SetOtherColor(List<Color> colorList)
@@ -170,12 +183,11 @@ namespace LightTestLib
         /// </summary>
         /// <param name="gapMs">Промежуток</param>
         /// <param name="colorList">Список цветов</param>
-        public async void RandomShowAsync(int gapMs, List<Color> colorList)
+        public void RandomShowAsync(int gapMs, List<Color> colorList)
         {
             for (;;)
             {
-                await SetOtherColorAsync(colorList);
-                Thread.Sleep(gapMs);
+               SetOtherColorAsync(gapMs, colorList);
             }
         }
 
@@ -186,15 +198,15 @@ namespace LightTestLib
         /// <param name="gapMs">Промежуток</param>
         public async void BlinkListAsync(List<Color> colorList, int gapMs)
         {
-
             for (;;)
             {
                 foreach (Color c in colorList)
                 {
-
-                    int result = await Task.Run(() =>
+                   await Task.Run(() =>
                 {
-                    ActiveColor = c;
+                   
+                        ActiveColor = c;
+                  
                     Thread.Sleep(gapMs);
                     return 0;
                 });
@@ -202,5 +214,9 @@ namespace LightTestLib
             }
         }
 
+        Task<int> ILightHolder.SetOtherColorAsync(int gapMs, List<Color> colorList)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

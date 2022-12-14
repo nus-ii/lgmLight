@@ -21,14 +21,22 @@ namespace WindowsFormsApplication1
         LightHolder lh;
         lightcaller lc;
         globalKeyboardHook gkh;
+        private DateTime laskKeyPress;
+        public bool HitchFlag { get; set; }
+        public TimeSpan HitchSpan { get; set; }
+        public bool HitchIndicator
+        {
+            get { return checkBox1.Checked;}
+            set { checkBox1.Checked = value; }
+        }
+
         public Form1()
         {
             InitializeComponent();
-            lh = new LightHolderSparta();
+            lh = new LightHolder();
             lc = new lightcaller();
             gkh = new globalKeyboardHook();
             lh.ActiveColor = new LightTestLib.Color(10, 50, 80);
-            //lc.ButtonC += lh.SetOtherColor;
 
             notifyIcon1.Visible = true;
             // добавляем Эвент или событие по 2му клику мышки, 
@@ -41,6 +49,19 @@ namespace WindowsFormsApplication1
 
             // добавляем событие на изменение окна
             this.Resize += new System.EventHandler(this.Form1_Resize);
+
+            //Время последнего нажатия на клавишу
+            laskKeyPress=DateTime.Now;
+
+            //Время ожидания нажатия на клавишу
+            HitchSpan = new TimeSpan(10*10000000);
+            label4.Text = "10 sec.";
+
+            //Признак отслеживания простоя
+            checkBox1.Checked = true;
+
+            //сначала выключено
+            radioButton3.Checked = true;
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -118,7 +139,15 @@ namespace WindowsFormsApplication1
 
         private void button6_Click(object sender, EventArgs e)
         {
-            timer1.Interval = timer1.Interval - 60;
+            if (timer1.Interval > 70)
+            {
+                timer1.Interval = timer1.Interval - 60;
+            }
+            else
+            {
+                timer1.Interval = 10;
+            }
+            
             label1.Text = timer1.Interval.ToString() + " ms";
         }
 
@@ -171,18 +200,138 @@ namespace WindowsFormsApplication1
 
         private void Hook_Click(object sender, EventArgs e)
         {
-            for(int? c=0;c<254;c++)
-            { gkh.HookedKeys.Add((Keys)c); }
-            gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
+            //for(int? c=0;c<254;c++)
+            //{ gkh.HookedKeys.Add((Keys)c); }
+            //gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
         }
 
 
         async void gkh_KeyDown(object sender, KeyEventArgs e)
         {
-            lock(lh)
+            laskKeyPress=DateTime.Now;
+            HitchFlag = false;
+            lock (lh)
             {
                 lh.SetOtherColor();
+                lh.stop = true;
+
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked == true)
+            {
+                if (lh != null)
+                {
+                    lh.Kill();
+                    lh = null;
+                }
+                lh = new LightHolder();
+                radioButton2.Checked = false;
+                radioButton3.Checked = false;
+
+                List<LightTestLib.Color> cList = new List<LightTestLib.Color>
+                {
+                    new LightTestLib.Color(90,90,90),
+                    new LightTestLib.Color(0,90,90),
+                    new LightTestLib.Color(0,0,90),
+
+                    new LightTestLib.Color(90,0,0),
+                    new LightTestLib.Color(90,90,0),
+                    new LightTestLib.Color(90,0,90),
+                    new LightTestLib.Color(0,90,0),
+
+                    new LightTestLib.Color(90,90,90),
+                };
+                lh.BlinkListAsync(cList,500);
+            }
+   
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked == true)
+            {
+                if (lh != null)
+                {
+                    lh.Kill();
+                    lh = null;
+                }
+           
+                lh = new LightHolder();
+                radioButton1.Checked = false;
+                radioButton3.Checked = false;
+
+                for (int? c = 0; c < 254; c++)
+                { gkh.HookedKeys.Add((Keys)c); }
+                gkh.KeyDown += new KeyEventHandler(gkh_KeyDown);
+                timer2.Interval = 1000;
+                timer2.Start();
+            }
+
+     
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked == true)
+            {
+                if (lh != null)
+                {
+                    lh.Kill();
+                    lh = null;
+                }
+                radioButton1.Checked = false;
+                radioButton2.Checked = false;
+            }
+            
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            var dnow = DateTime.Now;
+            var dif = dnow - laskKeyPress;
+            if ((dif > HitchSpan)&&HitchFlag==false&&HitchIndicator)
+            {
+                HitchFlag = true;
+                List<LightTestLib.Color> cList = new List<LightTestLib.Color>
+                {
+                    new LightTestLib.Color(90,0,0),
+                    new LightTestLib.Color(0,0,0)
+                };
+                lh = new LightHolder();
+                lh.BlinkListAsync(cList, 500);
+            }
+        }
+
+        
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+           
+
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            HitchSpan =new TimeSpan(trackBar1.Value * 1000);
+            label4.Text = trackBar1.Value.ToString() + " sec.";
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 
