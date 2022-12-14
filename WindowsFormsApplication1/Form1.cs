@@ -87,18 +87,6 @@ namespace WindowsFormsApplication1
             WindowState = FormWindowState.Normal;
         }
 
-        private async void button1_Click(object sender, EventArgs e)
-        {
-            
-            //var k = await lh.cum();
-            //var t = 0;
-        }
-
-        private async void button2_Click(object sender, EventArgs e)
-        {
-            //var d=await lh.Bbb();
-            //var dh = 0;
-        }
 
         private async void button3_Click(object sender, EventArgs e)
         {
@@ -107,10 +95,7 @@ namespace WindowsFormsApplication1
             timer1.Start();
         }
 
-        private int Lc_ButtonC()
-        {
-            throw new NotImplementedException();
-        }
+        
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -125,31 +110,7 @@ namespace WindowsFormsApplication1
             lc.clickClick(cList);
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            //lc.ButtonC -= lh.SetOtherColor;
-            timer1.Stop();
-        }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            timer1.Interval = timer1.Interval + 60;
-            label1.Text = timer1.Interval.ToString() + " ms";
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            if (timer1.Interval > 70)
-            {
-                timer1.Interval = timer1.Interval - 60;
-            }
-            else
-            {
-                timer1.Interval = 10;
-            }
-            
-            label1.Text = timer1.Interval.ToString() + " ms";
-        }
 
         private void button7_Click(object sender, EventArgs e)
         {
@@ -213,8 +174,6 @@ namespace WindowsFormsApplication1
             lock (lh)
             {
                 lh.SetOtherColor();
-                lh.stop = true;
-
             }
         }
 
