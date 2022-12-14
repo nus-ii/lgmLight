@@ -56,7 +56,6 @@
             // timer1
             // 
             this.timer1.Interval = 200;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // notifyIcon1
             // 
@@ -132,7 +131,7 @@
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Hook";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            
             // 
             // label3
             // 
@@ -172,7 +171,6 @@
             this.checkBox1.TabIndex = 12;
             this.checkBox1.Text = "Hitch indication";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -183,7 +181,6 @@
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "None";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // radioButton3
             // 
@@ -203,7 +200,7 @@
             // 
             // timer3
             // 
-            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            
             // 
             // label4
             // 

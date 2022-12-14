@@ -83,26 +83,44 @@ namespace LightTestLib
         /// <returns></returns>
         public virtual List<Color> GetBaseColors(bool withBlack = false)
         {
-            List<Color> result = new List<Color>();
-            for (int i = 0; i <= 2; i++)
-            {
-                for (int s = 0; s <= 100; s++)
-                {
-                    if (i == 0)
-                    {
-                        result.Add(new Color(s, 0, 100));
-                    }
-                    if (i == 1)
-                    {
-                        result.Add(new Color(0, s, 100));
-                    }
-                    if (i == 2)
-                    {
-                        result.Add(new Color(0, 100, s));
-                    }
-                }
-            }
-            return result;
+            //List<Color> result = new List<Color>();
+            //for (int i = 0; i <= 2; i++)
+            //{
+            //    for (int s = 0; s <= 100; s++)
+            //    {
+            //        if (i == 0)
+            //        {
+            //            result.Add(new Color(s, 0, 100));
+            //        }
+            //        if (i == 1)
+            //        {
+            //            result.Add(new Color(0, s, 100));
+            //        }
+            //        if (i == 2)
+            //        {
+            //            result.Add(new Color(0, 100, s));
+            //        }
+            //    }
+            //}
+            //return result;
+
+
+            var ColorList = new List<Color>();
+
+            ColorList.Add(new Color(0, 0, 99));
+            ColorList.Add(new Color(0, 99, 0));
+            ColorList.Add(new Color(0, 99, 99));
+
+            ColorList.Add(new Color(99, 0, 0));
+            ColorList.Add(new Color(99, 0, 99));
+            ColorList.Add(new Color(99, 99, 0));
+
+            ColorList.Add(new Color(99, 99, 99));
+
+            if (withBlack)
+                ColorList.Add(new Color(0, 0, 0));
+
+            return ColorList;
         }
 
         /// <summary>

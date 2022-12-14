@@ -44,7 +44,7 @@ namespace WindowsFormsApplication1
             this.notifyIcon1.MouseDoubleClick += new MouseEventHandler(notifyIcon1_MouseDoubleClick);
             List<MenuItem> i = new List<MenuItem>();
             i.Add(new MenuItem("Hook",Hook_Click));
-            i.Add(new MenuItem("Blink", button3_Click));
+           // i.Add(new MenuItem("Blink", button3_Click));
             this.notifyIcon1.ContextMenu = new ContextMenu(i.ToArray());
 
             // добавляем событие на изменение окна
@@ -88,27 +88,7 @@ namespace WindowsFormsApplication1
         }
 
 
-        private async void button3_Click(object sender, EventArgs e)
-        {
-            lc.ButtonC += lh.SetOtherColor;
-            timer1.Interval = 1000;
-            timer1.Start();
-        }
 
-        
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            List<LightTestLib.Color> cList = new List<LightTestLib.Color>
-            {
-                new LightTestLib.Color(40,50,0),
-                new LightTestLib.Color(90,0,0),
-                new LightTestLib.Color(90,0,90),
-                new LightTestLib.Color(90,90,0)
-            };
-
-            lc.clickClick(cList);
-        }
 
 
 
@@ -204,27 +184,10 @@ namespace WindowsFormsApplication1
                 radioButton2.Checked = false;
                 radioButton3.Checked = false;
 
-                List<LightTestLib.Color> cList = new List<LightTestLib.Color>
-                {
-                    new LightTestLib.Color(90,90,90),
-                    new LightTestLib.Color(0,90,90),
-                    new LightTestLib.Color(0,0,90),
-
-                    new LightTestLib.Color(90,0,0),
-                    new LightTestLib.Color(90,90,0),
-                    new LightTestLib.Color(90,0,90),
-                    new LightTestLib.Color(0,90,0),
-
-                    new LightTestLib.Color(90,90,90),
-                };
+                List<LightTestLib.Color> cList = lh.BaseColors;
                 lh.BlinkListAsync(cList,500);
             }
    
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -285,11 +248,7 @@ namespace WindowsFormsApplication1
 
         
 
-        private void timer3_Tick(object sender, EventArgs e)
-        {
-           
 
-        }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
@@ -297,15 +256,7 @@ namespace WindowsFormsApplication1
             label4.Text = trackBar1.Value.ToString() + " sec.";
         }
 
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
 
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 
     public class USBDeviceInfo
