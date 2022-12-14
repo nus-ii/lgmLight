@@ -171,6 +171,15 @@ namespace WindowsFormsApplication1
         {
             laskKeyPress=DateTime.Now;
             HitchFlag = false;
+
+            var tempColor = lh.ActiveColor;
+            if (lh != null)
+            {
+                lh.Kill();
+                lh = null;
+            }
+
+            lh = new LightHolder(tempColor);
             lock (lh)
             {
                 lh.SetOtherColor();
@@ -289,6 +298,11 @@ namespace WindowsFormsApplication1
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
         {
 
         }
